@@ -1,0 +1,18 @@
+{
+  "name": "@react-maps/naver",
+  "version": "1.0.0",
+  "description": "React map component wrapping the Naver Maps API",
+  "author": "hyejin85 <hyejin.lee0805@gmail.com>",
+  "license": "ISC",
+  "main": "lib/naver.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "node ./__tests__/naver.test.js"
+  }
+}
