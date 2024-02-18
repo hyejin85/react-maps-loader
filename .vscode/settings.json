@@ -3,5 +3,5 @@
     "source.fixAll": "explicit"
   },
   "editor.formatOnSave": true,
-  "cSpell.words": ["naver"]
+  "cSpell.words": ["naver", "navermaps"]
 }

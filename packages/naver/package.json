@@ -14,5 +14,8 @@
   ],
   "scripts": {
     "test": "node ./__tests__/naver.test.js"
+  },
+  "devDependencies": {
+    "@types/navermaps": "^3.7.4"
   }
 }
