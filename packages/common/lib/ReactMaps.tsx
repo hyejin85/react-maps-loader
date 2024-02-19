@@ -1,7 +1,7 @@
 import { isEqual } from 'lodash-es';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
-import { GoogleMapService as GoogleMap } from '../packages/google/lib';
-import { NaverMapService as NaverMap } from '../packages/naver/lib';
+import { GoogleMapService as GoogleMap } from '../../google/lib';
+import { NaverMapService as NaverMap } from '../../naver/lib';
 import { MapType, MapItem, ControlOption } from './types';
 import { MapTypeEnum } from './enum';
 import LoadScript from './LoadScript';
