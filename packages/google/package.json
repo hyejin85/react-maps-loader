@@ -4,10 +4,9 @@
   "description": "React map component wrapping the Google Maps API",
   "author": "hyejin85 <hyejin.lee0805@gmail.com>",
   "license": "ISC",
-  "main": "lib/google.js",
+  "main": "lib/index.ts",
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "lib": "lib"
   },
   "files": [
     "lib"
