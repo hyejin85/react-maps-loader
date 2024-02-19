@@ -13,6 +13,8 @@ type GestureHandlingType = 'cooperative' | 'auto' | 'greedy' | 'none';
 type ControlOption = {
   zoom?: number;
   zoomControl?: boolean;
+  minZoom?: number;
+  maxZoom?: number;
   scrollWheel?: boolean;
   clickableIcons?: boolean; // 구글용 옵션
   gestureHandling?: GestureHandlingType; // 구글용 옵션

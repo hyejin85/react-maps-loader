@@ -1,5 +1,4 @@
-import { ControlOption, Location } from '@/types';
-import { MapOptionEnum } from '@/enum';
+import { ControlOption, Location } from 'react-maps-loader-common';
 
 /**
  * 위도/경도 값을 위치 객체로 변환하는 함수
@@ -27,12 +26,14 @@ class NaverMapService {
    */
   constructor(element: HTMLElement, controlOption?: ControlOption) {
     const mapOptions: naver.maps.MapOptions = {
-      zoom: controlOption?.zoom || MapOptionEnum.ZOOM_SIZE,
+      zoom: controlOption?.zoom,
       zoomControl: controlOption?.zoomControl || false,
       zoomControlOptions: {
         style: naver.maps?.ZoomControlStyle.SMALL,
         position: naver.maps?.Position.TOP_RIGHT,
       },
+      minZoom: controlOption?.minZoom,
+      maxZoom: controlOption?.maxZoom,
       scaleControl: false,
       logoControl: false,
       mapDataControl: false,

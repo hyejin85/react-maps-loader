@@ -1,5 +1,4 @@
-import { ControlOption, Location } from '@/types';
-import { MapOptionEnum } from '@/enum';
+import { ControlOption, Location } from 'react-maps-loader-common';
 
 /**
  * 위도/경도 값을 위치 객체로 변환하는 함수
@@ -30,13 +29,13 @@ class GoogleMapService {
    */
   constructor(element: HTMLElement, controlOption?: ControlOption) {
     const mapOptions: google.maps.MapOptions = {
-      zoom: controlOption?.zoom || MapOptionEnum.ZOOM_SIZE,
+      zoom: controlOption?.zoom,
       zoomControl: controlOption?.zoomControl || false,
       zoomControlOptions: {
         position: google.maps.ControlPosition.TOP_RIGHT,
       },
-      minZoom: MapOptionEnum.MIN_ZOOM_SIZE,
-      maxZoom: MapOptionEnum.MAX_ZOOM_SIZE,
+      minZoom: controlOption?.minZoom,
+      maxZoom: controlOption?.maxZoom,
       mapTypeControl: false,
       streetViewControl: false,
       fullscreenControl: false,

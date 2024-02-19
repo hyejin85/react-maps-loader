@@ -12,6 +12,7 @@
     "lib"
   ],
   "devDependencies": {
-    "@types/navermaps": "^3.7.4"
+    "@types/navermaps": "^3.7.4",
+    "react-maps-loader-common": "^0.0.2"
   }
 }
