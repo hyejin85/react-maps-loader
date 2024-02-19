@@ -27,4 +27,16 @@ type Location = {
   longitude: number;
 };
 
-export type { MapType, ControlOption, Location };
+/**
+ * @interface MapItem
+ * @member {number} id 상품 아이디
+ * @member {string} name 상품 이름
+ * @member {Location} location 상품 위/경도 정보
+ */
+interface MapItem {
+  id: number;
+  name: string;
+  location: Location;
+}
+
+export type { MapType, ControlOption, Location, MapItem };
