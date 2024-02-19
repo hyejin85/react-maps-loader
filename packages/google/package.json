@@ -1,6 +1,6 @@
 {
-  "name": "@react-maps/google",
-  "version": "1.0.0",
+  "name": "react-maps-loader-google",
+  "version": "0.0.0",
   "description": "React map component wrapping the Google Maps API",
   "author": "hyejin85 <hyejin.lee0805@gmail.com>",
   "license": "ISC",
@@ -12,9 +12,6 @@
   "files": [
     "lib"
   ],
-  "scripts": {
-    "test": "node ./__tests__/google.test.js"
-  },
   "devDependencies": {
     "@types/google.maps": "^3.55.3"
   }
