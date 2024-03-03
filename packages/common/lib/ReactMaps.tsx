@@ -1,13 +1,13 @@
 import { isEqual } from 'lodash-es';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
-import { MapType, MapItem, ControlOption } from './types';
+import { MapItem, ControlOption } from './types';
 import { MapTypeEnum } from './enum';
 import GoogleMap from '@/google/lib/GoogleMapService';
 import NaverMap from '@/naver/lib/NaverMapService';
 import LoadScript from './LoadScript';
 
 interface ReactMapsProps {
-  type: MapType;
+  type: 'google' | 'naver';
   apiKey: string;
   controlOption?: ControlOption;
   items: Array<MapItem>;
@@ -16,7 +16,7 @@ interface ReactMapsProps {
 }
 
 /**
- * @prop {MapType} type - 구글/네이버 지도 타입
+ * @prop {string} type - 구글/네이버 지도 타입
  * @prop {string} apiKey - 지도 API Key
  * @prop {ControlOption} controlOption - 지도 컨트롤 옵션 값
  * @prop {Array<MapItem>} items - 마커로 생성할 위치 정보 리스트
