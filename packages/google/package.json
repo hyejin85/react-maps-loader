@@ -12,7 +12,9 @@
     "lib"
   ],
   "devDependencies": {
-    "@types/google.maps": "^3.55.3",
+    "@types/google.maps": "^3.55.3"
+  },
+  "dependencies": {
     "react-maps-loader-common": "^0.0.2"
   }
 }

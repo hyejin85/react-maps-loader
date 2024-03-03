@@ -11,7 +11,7 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./lib/*"]
+      "@/*": ["./packages/*"]
     },
     "typeRoots": ["node_modules/@types"],
     "jsx": "preserve"
