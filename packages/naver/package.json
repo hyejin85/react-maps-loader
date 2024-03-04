@@ -17,5 +17,6 @@
   "dependencies": {
     "@types/navermaps": "^3.7.4",
     "react-maps-loader-common": "^0.0.3"
-  }
+  },
+  "gitHead": "1041f4ba53d05a4c151f781f6578e5cdbb895b85"
 }
