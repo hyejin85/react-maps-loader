@@ -11,10 +11,11 @@
   "files": [
     "lib"
   ],
-  "devDependencies": {
-    "@types/navermaps": "^3.7.4"
+  "scripts": {
+    "build": "rm -rf dist && npx tsc --build && webpack"
   },
   "dependencies": {
+    "@types/navermaps": "^3.7.4",
     "react-maps-loader-common": "^0.0.3-alpha.0"
   }
 }

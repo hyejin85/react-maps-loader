@@ -13,7 +13,9 @@
     "paths": {
       "@/*": ["./packages/*"]
     },
+    "outDir": "lib",
     "typeRoots": ["node_modules/@types"],
+    "types": ["google.maps", "navermaps"],
     "jsx": "preserve"
   },
   "include": ["**/*.ts", "**/*.tsx"],

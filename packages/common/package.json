@@ -12,6 +12,9 @@
   "files": [
     "lib"
   ],
+  "scripts": {
+    "build": "rm -rf dist && npx tsc --build && webpack"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hyejin85/react-maps-loader.git"
