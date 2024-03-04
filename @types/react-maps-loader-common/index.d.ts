@@ -1,17 +1,16 @@
-// import { MapTypeEnum } from './enum';
+declare module 'react-maps-loader-common';
 
 /**
  * @example google | naver
  */
-// export type MapType = MapTypeEnum.GOOGLE | MapTypeEnum.NAVER;
-export type MapType = 'google' | 'naver';
+type MapType = 'google' | 'naver';
 
 /**
  * @link https://developers.google.com/maps/documentation/javascript/interaction?hl=ko
  */
-export type GestureHandlingType = 'cooperative' | 'auto' | 'greedy' | 'none';
+type GestureHandlingType = 'cooperative' | 'auto' | 'greedy' | 'none';
 
-export type ControlOption = {
+type ControlOption = {
   zoom?: number;
   zoomControl?: boolean;
   minZoom?: number;
@@ -25,7 +24,7 @@ export type ControlOption = {
   };
 };
 
-export type Location = {
+type Location = {
   latitude: number;
   longitude: number;
 };
@@ -36,7 +35,7 @@ export type Location = {
  * @member {string} name 상품 이름
  * @member {Location} location 상품 위/경도 정보
  */
-export interface MapItem {
+interface MapItem {
   id: number;
   name: string;
   location: Location;

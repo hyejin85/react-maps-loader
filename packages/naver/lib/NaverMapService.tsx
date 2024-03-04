@@ -1,11 +1,11 @@
-import { ControlOption, Location } from 'react-maps-loader-common';
+// import { ControlOption, Location } from 'react-maps-loader-common';
 
 /**
  * 위도/경도 값을 위치 객체로 변환하는 함수
  * @param location 위도/경도 값
  * @returns 위치 객체
  */
-const getPosition = (location: Location): naver.maps.LatLng => {
+const getPosition = (location: any): naver.maps.LatLng => {
   return new naver.maps.LatLng(location.latitude, location.longitude);
 };
 

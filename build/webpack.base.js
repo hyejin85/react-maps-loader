@@ -2,13 +2,13 @@ const Constants = require('./Constants');
 
 module.exports = {
   entry: {
-    'common/c': `/${Constants.ENTRY_PATH('common')}`,
-    'google/g': `/${Constants.ENTRY_PATH('google')}`,
-    'naver/n': `/${Constants.ENTRY_PATH('naver')}`,
+    'common/index': `/${Constants.ENTRY_PATH('common')}`,
+    'google/index': `/${Constants.ENTRY_PATH('google')}`,
+    'naver/index': `/${Constants.ENTRY_PATH('naver')}`,
   },
   output: {
     path: `${Constants.DIST_PATH}`,
-    filename: '[name].[contenthash].bundle.js',
+    // filename: '[name].[contenthash].bundle.js',
   },
   watchOptions: {
     ignored: `${Constants.NODE_MODULE_PATH}`,

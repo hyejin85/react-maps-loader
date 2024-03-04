@@ -5,16 +5,13 @@
   "author": "hyejin85 <hyejin.lee0805@gmail.com>",
   "homepage": "https://github.com/hyejin85/react-maps-loader#readme",
   "license": "ISC",
-  "main": "lib/index.ts",
+  "main": "dist/index.js",
   "directories": {
     "lib": "lib"
   },
   "files": [
-    "lib"
+    "dist"
   ],
-  "scripts": {
-    "build": "rm -rf dist && npx tsc --build && webpack"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hyejin85/react-maps-loader.git"

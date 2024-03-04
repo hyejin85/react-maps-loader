@@ -1,6 +1,6 @@
 import { isEqual } from 'lodash-es';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
-import { MapItem, ControlOption } from './types';
+// import { MapItem, ControlOption } from './types';
 import { MapTypeEnum } from './enum';
 import GoogleMap from '@/google/lib/GoogleMapService';
 import NaverMap from '@/naver/lib/NaverMapService';

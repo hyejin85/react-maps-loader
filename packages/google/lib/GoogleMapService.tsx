@@ -1,11 +1,11 @@
-import { ControlOption, Location } from 'react-maps-loader-common';
+// import { ControlOption, Location } from 'react-maps-loader-common';
 
 /**
  * 위도/경도 값을 위치 객체로 변환하는 함수
  * @param location 위도/경도 값 객체
  * @returns 위치 객체
  */
-const getPosition = (location: Location): google.maps.LatLng => {
+const getPosition = (location: any): google.maps.LatLng => {
   return new google.maps.LatLng(location.latitude, location.longitude);
 };
 

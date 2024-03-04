@@ -4,16 +4,13 @@
   "description": "React map component wrapping the Naver Maps API",
   "author": "hyejin85 <hyejin.lee0805@gmail.com>",
   "license": "ISC",
-  "main": "lib/index.ts",
+  "main": "dist/index.js",
   "directories": {
     "lib": "lib"
   },
   "files": [
-    "lib"
+    "dist"
   ],
-  "scripts": {
-    "build": "rm -rf dist && npx tsc --build && webpack"
-  },
   "dependencies": {
     "@types/navermaps": "^3.7.4",
     "react-maps-loader-common": "^0.0.5"
