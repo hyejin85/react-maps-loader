@@ -11,11 +11,10 @@
     }
   },
   "scripts": {
-    "remove": "rm -rf packages/common/build && rm -rf packages/google/build && rm -rf packages/naver/build",
-    "copy:babel": "cp babel.config.js packages/common && cp babel.config.js packages/google && cp babel.config.js packages/naver",
-    "copy:config": "cp webpack.config.js packages/common && cp webpack.config.js packages/google && cp webpack.config.js packages/naver",
-    "copy:build": "cp -r build packages/common && cp -r build packages/google && cp -r build packages/naver",
-    "build": "rm -rf lib && npx tsc --build && webpack"
+    "build": "rm -rf lib && npx tsc --build && webpack",
+    "clean": "rm -rf packages/common/dist && rm -rf packages/google/dist && rm -rf packages/naver/dist",
+    "move": "cp -r dist/common packages/common/dist && cp -r dist/google packages/google/dist && cp -r dist/naver packages/naver/dist",
+    "prepare": "npm run build && npm run clean && npm run move"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",
