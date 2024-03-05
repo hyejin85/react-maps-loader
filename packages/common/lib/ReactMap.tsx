@@ -1,15 +1,14 @@
 import { isEqual } from 'lodash-es';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
-// import { MapItem, ControlOption } from './types';
-import { MapTypeEnum } from './enum';
 import GoogleMap from '@/google/lib/GoogleMapService';
 import NaverMap from '@/naver/lib/NaverMapService';
+import { MapItem, MapOptions } from './index.d';
 import LoadScript from './LoadScript';
 
-interface ReactMapsProps {
+interface ReactMapProps {
   type: 'google' | 'naver';
   apiKey: string;
-  controlOption?: ControlOption;
+  options?: MapOptions;
   items: Array<MapItem>;
   selectedItem?: MapItem;
   onClickMarker?: (item?: MapItem) => void;
@@ -18,12 +17,12 @@ interface ReactMapsProps {
 /**
  * @prop {string} type - 구글/네이버 지도 타입
  * @prop {string} apiKey - 지도 API Key
- * @prop {ControlOption} controlOption - 지도 컨트롤 옵션 값
+ * @prop {ControlOption} options - 지도 컨트롤 옵션 값
  * @prop {Array<MapItem>} items - 마커로 생성할 위치 정보 리스트
  * @prop {MapItem} selectedItem - 액티브 상태로 표시할 마커 위치 정보
  * @prop {(item: MapItem) => void} onClickMarker - 마커 클릭 이벤트 리스너
  */
-const ReactMaps: FC<ReactMapsProps> = ({ type, apiKey, controlOption, items, selectedItem, onClickMarker }) => {
+const ReactMap: FC<ReactMapProps> = ({ type, apiKey, options, items, selectedItem, onClickMarker }) => {
   /**
    * 지도 객체가 올라가는 Element
    */
@@ -32,7 +31,7 @@ const ReactMaps: FC<ReactMapsProps> = ({ type, apiKey, controlOption, items, sel
   /**
    * 구글/네이버 지도 타입
    */
-  const isGoogle = type === MapTypeEnum.GOOGLE;
+  const isGoogle = type === 'google';
 
   /**
    * 지도 객체
@@ -61,9 +60,9 @@ const ReactMaps: FC<ReactMapsProps> = ({ type, apiKey, controlOption, items, sel
 
     let map: GoogleMap | NaverMap;
     if (isGoogle) {
-      map = new GoogleMap(mapElement, controlOption);
+      map = new GoogleMap(mapElement, options);
     } else {
-      map = new NaverMap(mapElement, controlOption);
+      map = new NaverMap(mapElement, options);
     }
 
     setMapInstance(map);
@@ -133,4 +132,4 @@ const ReactMaps: FC<ReactMapsProps> = ({ type, apiKey, controlOption, items, sel
   );
 };
 
-export default ReactMaps;
+export default ReactMap;

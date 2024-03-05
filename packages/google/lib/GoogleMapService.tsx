@@ -1,12 +1,12 @@
-// import { ControlOption, Location } from 'react-maps-loader-common';
+import { MapOptions } from 'react-maps-loader-common';
 
 /**
  * 위도/경도 값을 위치 객체로 변환하는 함수
- * @param location 위도/경도 값 객체
+ * @param position 위도/경도 값 객체
  * @returns 위치 객체
  */
-const getPosition = (location: any): google.maps.LatLng => {
-  return new google.maps.LatLng(location.latitude, location.longitude);
+const getPosition = (position: { lat: number; lng: number }): google.maps.LatLng => {
+  return new google.maps.LatLng(position.lat, position.lng);
 };
 
 /**
@@ -27,7 +27,7 @@ class GoogleMapService {
    * @param element 지도를 올릴 타겟 엘리먼트
    * @param controlOption 컨트롤 옵션
    */
-  constructor(element: HTMLElement, controlOption?: ControlOption) {
+  constructor(element: HTMLElement, controlOption?: MapOptions) {
     const mapOptions: google.maps.MapOptions = {
       zoom: controlOption?.zoom,
       zoomControl: controlOption?.zoomControl || false,
@@ -80,7 +80,7 @@ class GoogleMapService {
 
     if (items.length <= 1) {
       const [item] = items;
-      const position = getPosition(item.location);
+      const position = getPosition(item.position);
       // 지도 센터 위치를 지정한다
       this.setCenter(position);
     } else {
@@ -89,7 +89,7 @@ class GoogleMapService {
     }
 
     items.forEach((item) => {
-      const position = getPosition(item.location);
+      const position = getPosition(item.position);
       // 마커 위치 정보를 경계 객체에 넘겨준다
       this.bounds.extend(position);
 

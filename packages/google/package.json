@@ -5,9 +5,7 @@
   "author": "hyejin85 <hyejin.lee0805@gmail.com>",
   "license": "ISC",
   "main": "dist/index.js",
-  "directories": {
-    "lib": "lib"
-  },
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],

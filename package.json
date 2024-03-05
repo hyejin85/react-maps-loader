@@ -13,8 +13,9 @@
   "scripts": {
     "build": "rm -rf lib && npx tsc --build && webpack",
     "clean": "rm -rf packages/common/dist && rm -rf packages/google/dist && rm -rf packages/naver/dist",
-    "move": "cp -r dist/common packages/common/dist && cp -r dist/google packages/google/dist && cp -r dist/naver packages/naver/dist",
-    "prepare": "npm run build && npm run clean && npm run move"
+    "copy:dist": "cp -r dist/common packages/common/dist && cp -r dist/google packages/google/dist && cp -r dist/naver packages/naver/dist",
+    "copy:type": "cp packages/common/lib/index.d.ts packages/common/dist && cp packages/google/lib/index.d.ts packages/google/dist && cp packages/naver/lib/index.d.ts packages/naver/dist",
+    "prepare": "npm run build && npm run clean && npm run copy:dist && npm run copy:type"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",

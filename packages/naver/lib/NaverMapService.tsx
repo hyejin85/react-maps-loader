@@ -1,12 +1,12 @@
-// import { ControlOption, Location } from 'react-maps-loader-common';
+import { MapOptions } from 'react-maps-loader-common';
 
 /**
  * 위도/경도 값을 위치 객체로 변환하는 함수
- * @param location 위도/경도 값
+ * @param position 위도/경도 값
  * @returns 위치 객체
  */
-const getPosition = (location: any): naver.maps.LatLng => {
-  return new naver.maps.LatLng(location.latitude, location.longitude);
+const getPosition = (position: { lat: number; lng: number }): naver.maps.LatLng => {
+  return new naver.maps.LatLng(position.lat, position.lng);
 };
 
 /**
@@ -24,7 +24,7 @@ class NaverMapService {
    * @param element 지도를 올릴 타겟 엘리먼트
    * @param controlOption 컨트롤 옵션
    */
-  constructor(element: HTMLElement, controlOption?: ControlOption) {
+  constructor(element: HTMLElement, controlOption?: MapOptions) {
     const mapOptions: naver.maps.MapOptions = {
       zoom: controlOption?.zoom,
       zoomControl: controlOption?.zoomControl || false,
@@ -82,7 +82,7 @@ class NaverMapService {
 
     if (items.length <= 1) {
       const [item] = items;
-      const position = getPosition(item.location);
+      const position = getPosition(item.position);
       // 지도 센터 위치를 지정한다
       this.setCenter(position);
     } else {
@@ -93,7 +93,7 @@ class NaverMapService {
     items.forEach((item) => {
       // 네이버 기본 마커 생성
       const marker = new naver.maps.Marker({
-        position: getPosition(item.location),
+        position: getPosition(item.position),
         map: this.map,
       });
 
@@ -138,7 +138,7 @@ class NaverMapService {
    * @param items 상품 정보 리스트
    */
   setBounds(items: Array<any>): void {
-    const positions = items.map((item) => getPosition(item.location));
+    const positions = items.map((item) => getPosition(item.position));
     this.map.fitBounds(positions);
   }
 

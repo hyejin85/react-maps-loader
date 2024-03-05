@@ -1,1 +1,1 @@
-export { default as ReactMaps } from './ReactMaps';
+export { default as ReactMaps } from './ReactMap';
