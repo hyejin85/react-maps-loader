@@ -1,6 +1,6 @@
 {
   "name": "react-maps-loader-common",
-  "version": "0.0.7",
+  "version": "0.0.7-alpha.0",
   "description": "common package",
   "author": "hyejin85 <hyejin.lee0805@gmail.com>",
   "homepage": "https://github.com/hyejin85/react-maps-loader#readme",
@@ -13,9 +13,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hyejin85/react-maps-loader.git"
-  },
-  "bugs": {
-    "url": "https://github.com/hyejin85/react-maps-loader/issues"
-  },
-  "gitHead": "4ebbc0e9c9b345759f233aa4f5cf51e1541e92e3"
+  }
 }
