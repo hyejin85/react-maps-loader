@@ -33,14 +33,4 @@ export interface NaverMapProps {
   children?: React.ReactNode;
 }
 
-declare function NaverMapFunctional({
-  type,
-  apiKey,
-  options,
-  items,
-  selectedItem,
-  onClickMarker,
-  children,
-}: NaverMapProps): JSX.Element;
-
-export declare const NaverMap: React.Component<typeof NaverMapFunctional>;
+export declare const NaverMap: React.FunctionComponent<NaverMapProps>;

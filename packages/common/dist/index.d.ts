@@ -31,14 +31,4 @@ export interface ReactMapProps {
   children?: React.ReactNode;
 }
 
-declare function ReactMapFunctional({
-  type,
-  apiKey,
-  options,
-  items,
-  selectedItem,
-  onClickMarker,
-  children,
-}: ReactMapProps): JSX.Element;
-
-export declare const ReactMap: React.Component<typeof ReactMapFunctional>;
+export declare const ReactMap: React.FunctionComponent<ReactMapProps>;

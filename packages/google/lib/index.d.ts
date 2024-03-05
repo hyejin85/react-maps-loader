@@ -33,14 +33,4 @@ export interface GoogleMapProps {
   children?: React.ReactNode;
 }
 
-declare function GoogleMapFunctional({
-  type,
-  apiKey,
-  options,
-  items,
-  selectedItem,
-  onClickMarker,
-  children,
-}: GoogleMapProps): JSX.Element;
-
-export declare const GoogleMap: React.Component<typeof GoogleMapFunctional>;
+export declare const GoogleMap: React.FunctionComponent<GoogleMapProps>;
