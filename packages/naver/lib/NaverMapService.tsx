@@ -1,4 +1,4 @@
-import { MapOptions } from 'react-maps-loader-common';
+// import { MapOptions } from 'react-maps-loader-common';
 
 /**
  * 위도/경도 값을 위치 객체로 변환하는 함수
@@ -24,7 +24,7 @@ class NaverMapService {
    * @param element 지도를 올릴 타겟 엘리먼트
    * @param controlOption 컨트롤 옵션
    */
-  constructor(element: HTMLElement, controlOption?: MapOptions) {
+  constructor(element: HTMLElement, controlOption?: any) {
     const mapOptions: naver.maps.MapOptions = {
       zoom: controlOption?.zoom,
       zoomControl: controlOption?.zoomControl || false,
