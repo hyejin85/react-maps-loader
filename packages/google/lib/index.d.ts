@@ -33,4 +33,6 @@ export interface GoogleMapProps {
   children?: React.ReactNode;
 }
 
-export declare const GoogleMap: React.FunctionComponent<GoogleMapProps>;
+declare const GoogleMap: React.FunctionComponent<GoogleMapProps>;
+
+export = GoogleMap;

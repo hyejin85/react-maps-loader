@@ -33,4 +33,6 @@ export interface NaverMapProps {
   children?: React.ReactNode;
 }
 
-export declare const NaverMap: React.FunctionComponent<NaverMapProps>;
+declare const NaverMap: React.FunctionComponent<NaverMapProps>;
+
+export = NaverMap;

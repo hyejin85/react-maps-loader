@@ -31,4 +31,6 @@ export interface ReactMapProps {
   children?: React.ReactNode;
 }
 
-export declare const ReactMap: React.FunctionComponent<ReactMapProps>;
+declare const ReactMap: React.FunctionComponent<ReactMapProps>;
+
+export = ReactMap;
