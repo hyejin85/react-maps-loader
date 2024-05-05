@@ -1,4 +1,16 @@
-import { MapOptions } from 'react-maps-loader-common';
+interface MapOptions {
+  zoom?: number;
+  zoomControl?: boolean;
+  minZoom?: number;
+  maxZoom?: number;
+  scrollWheel?: boolean;
+  clickableIcons?: boolean; // 구글용 옵션
+  gestureHandling?: string; // 구글용 옵션
+  panBy?: {
+    x: number;
+    y: number;
+  };
+}
 
 /**
  * 위도/경도 값을 위치 객체로 변환하는 함수

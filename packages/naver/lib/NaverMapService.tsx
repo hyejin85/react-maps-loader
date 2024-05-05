@@ -1,4 +1,14 @@
-import { MapOptions } from 'react-maps-loader-common';
+interface MapOptions {
+  zoom?: number;
+  zoomControl?: boolean;
+  minZoom?: number;
+  maxZoom?: number;
+  scrollWheel?: boolean;
+  panBy?: {
+    x: number;
+    y: number;
+  };
+}
 
 /**
  * 위도/경도 값을 위치 객체로 변환하는 함수
@@ -39,7 +49,6 @@ class NaverMapService {
       mapDataControl: false,
       mapTypeControl: false,
       scrollWheel: controlOption?.scrollWheel || false,
-      draggable: controlOption?.gestureHandling !== 'none' || false,
     };
 
     this.map = new naver.maps.Map(element, mapOptions);

@@ -2,8 +2,31 @@ import { isEqual } from 'lodash-es';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import GoogleMap from '@/google/lib/GoogleMapService';
 import NaverMap from '@/naver/lib/NaverMapService';
-import { MapItem, MapOptions } from './index.d';
+// import { MapItem, MapOptions } from './index.d';
 import LoadScript from './LoadScript';
+
+interface MapOptions {
+  zoom?: number;
+  zoomControl?: boolean;
+  minZoom?: number;
+  maxZoom?: number;
+  scrollWheel?: boolean;
+  clickableIcons?: boolean; // 구글용 옵션
+  gestureHandling?: string; // 구글용 옵션
+  panBy?: {
+    x: number;
+    y: number;
+  };
+}
+
+interface MapItem {
+  id: number;
+  name?: string;
+  position: {
+    lat: number;
+    lng: number;
+  };
+}
 
 interface ReactMapProps {
   type: 'google' | 'naver';

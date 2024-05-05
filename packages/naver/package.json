@@ -5,13 +5,13 @@
   "author": "hyejin85 <hyejin.lee0805@gmail.com>",
   "license": "ISC",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "module": "dist/index.js",
+  "types": "dist/lib/index.d.ts",
   "files": [
     "dist"
   ],
   "dependencies": {
-    "@types/navermaps": "^3.7.4",
-    "react-maps-loader-common": "^0.0.8-alpha.0"
+    "@types/navermaps": "^3.7.4"
   },
   "gitHead": "4ebbc0e9c9b345759f233aa4f5cf51e1541e92e3"
 }

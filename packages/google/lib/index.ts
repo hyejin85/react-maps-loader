@@ -1,2 +1,2 @@
-import './GoogleMapService';
-export { ReactMap as GoogleMap } from 'react-maps-loader-common';
+export * from './GoogleMapService';
+export { default as GoogleMap } from '@/common/lib/ReactMap';

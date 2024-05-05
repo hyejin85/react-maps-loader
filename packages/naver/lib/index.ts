@@ -1,2 +1,2 @@
-import './NaverMapService';
-export { ReactMap as NaverMap } from 'react-maps-loader-common';
+export * from './NaverMapService';
+export { default as NaverMap } from '@/common/lib/ReactMap';
