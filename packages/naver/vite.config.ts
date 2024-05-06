@@ -26,12 +26,12 @@ export default defineConfig({
     // minify: 'terser',
     outDir: resolve(__dirname, 'dist'),
     lib: {
-      entry: resolve(__dirname, 'lib/index.ts'),
+      entry: 'packages/common/lib/index.ts',
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled into your library
       external: ['react', 'react/jsx-runtime'],
-      treeshake: 'smallest',
+      // treeshake: 'smallest',
       output: [
         {
           format: 'es',

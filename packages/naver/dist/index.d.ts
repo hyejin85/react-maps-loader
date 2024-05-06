@@ -1,3 +1,3 @@
-export * from './naver/lib/index'
-import _default from './naver/lib/index'
+export * from './common/lib/index'
+import _default from './common/lib/index'
 export default _default

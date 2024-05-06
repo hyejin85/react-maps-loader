@@ -1,3 +1,3 @@
-export * from './google/lib/index'
-import _default from './google/lib/index'
+export * from './common/lib/index'
+import _default from './common/lib/index'
 export default _default
