@@ -1,6 +1,6 @@
 {
   "name": "react-maps-loader-naver",
-  "version": "0.0.12",
+  "version": "0.0.13-alpha.0",
   "description": "React map component wrapping the Naver Maps API",
   "author": "hyejin85 <hyejin.lee0805@gmail.com>",
   "license": "ISC",
