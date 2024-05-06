@@ -29,7 +29,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./packages/*"]
-      // "common/*": ["../common/lib/*"]
     },
 
     /* Types */
@@ -37,5 +36,5 @@
     "types": ["google.maps", "navermaps"]
   },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "examples"]
 }
