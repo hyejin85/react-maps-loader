@@ -17,7 +17,7 @@
     "build": "npm run build:google && npm run build:naver",
     "remove:dist": "rm -rf packages/google/dist && rm -rf packages/naver/dist",
     "clean:google": "rm -rf packages/google/dist/naver && rm -rf packages/google/dist/google/vite.config.d.ts",
-    "clean:naver": "rm -rf packages/google/dist/google && rm -rf packages/naver/dist/naver/vite.config.d.ts",
+    "clean:naver": "rm -rf packages/naver/dist/google && rm -rf packages/naver/dist/naver/vite.config.d.ts",
     "clean": "npm run clean:google && npm run clean:naver",
     "prepare": "npm run remove:dist && npm run build && npm run clean",
     "publish": "lerna publish"
