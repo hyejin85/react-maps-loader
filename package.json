@@ -15,11 +15,13 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "clean": "rm -rf packages/common/dist && rm -rf packages/google/dist && rm -rf packages/naver/dist",
-    "copy:lib": "cp -r lib/common/lib packages/common/dist && cp -r lib/google/lib packages/google/dist && cp -r lib/naver/lib packages/naver/dist",
-    "copy:dist": "cp -r dist/common packages/common/dist && cp -r dist/google packages/google/dist && cp -r dist/naver packages/naver/dist",
-    "copy:type": "cp packages/common/lib/index.d.ts packages/common/dist && cp packages/google/lib/index.d.ts packages/google/dist && cp packages/naver/lib/index.d.ts packages/naver/dist",
-    "prepare": "npm run compile && npm run build && npm run clean && npm run copy:dist"
+    "clean:dist": "rm -rf packages/google/dist && rm -rf packages/naver/dist",
+    "make:dist": "mkdir packages/google/dist && mkdir packages/naver/dist",
+    "copy:google": "cp -r dist/common packages/google/dist/common && cp -r dist/google packages/google/dist/google",
+    "copy:naver": "cp -r dist/common packages/naver/dist/common && cp -r dist/naver packages/naver/dist/naver",
+    "copy:dist": "npm run copy:google && npm run copy:naver",
+    "prepare": "npm run compile && npm run build && npm run clean:dist && npm run make:dist && npm run copy:dist",
+    "publish": "npm run prepare && lerna publish"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
