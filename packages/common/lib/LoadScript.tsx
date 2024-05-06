@@ -13,11 +13,6 @@ interface LoadScriptProps extends PropsWithChildren {
  * @prop {() => void} initMap - script 로드 후 실행 할 콜백 함수
  */
 const LoadScript: FC<LoadScriptProps> = ({ apiKey, isGoogle, initMap, children }) => {
-  const getURL = (apiKey: string) =>
-    isGoogle
-      ? `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap&region=KR`
-      : `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${apiKey}`;
-
   /**
    * Google Map은 API 로드할때 callback 파라메타에 initMap을 지정해줘야 한다.
    * window에 initMap을 먼저 선언해둔다. (window.d.ts 파일 참조)
@@ -27,8 +22,11 @@ const LoadScript: FC<LoadScriptProps> = ({ apiKey, isGoogle, initMap, children }
     window.initMap = initMap;
 
     const script = document.createElement('script');
-    script.src = getURL(apiKey);
-    script.async = true;
+    script.src = isGoogle
+      ? `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap&region=KR`
+      : `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${apiKey}`;
+    script.onload = () => initMap();
+
     document.body.appendChild(script);
   }, []);
 
