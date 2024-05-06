@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     dts({
       entryRoot: 'packages',
-      //   insertTypesEntry: true,
+      insertTypesEntry: true,
     }),
   ],
   resolve: {
@@ -17,25 +17,27 @@ export default defineConfig({
       // @/xxxx => packages/xxxx
       {
         find: /^@\/(.+)/,
-        replacement: `${resolve(__dirname, './packages/')}/$1`,
+        replacement: `${resolve(__dirname, '../')}/$1`,
       },
     ],
   },
   build: {
     // sourcemap: true,
     // minify: 'terser',
-    outDir: 'dist',
+    outDir: resolve(__dirname, 'dist'),
     lib: {
-      entry: {
-        'common/index': resolve(__dirname, 'lib/packages/common/lib/index.js'),
-        'google/index': resolve(__dirname, 'lib/packages/google/lib/index.js'),
-        'naver/index': resolve(__dirname, 'lib/packages/naver/lib/index.js'),
-      },
+      entry: resolve(__dirname, 'lib/index.ts'),
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled into your library
-      external: ['react'],
-      //   treeshake: 'smallest',
+      external: ['react', 'react/jsx-runtime'],
+      treeshake: 'smallest',
+      output: [
+        {
+          format: 'es',
+          entryFileNames: '[name].mjs',
+        },
+      ],
     },
   },
 });

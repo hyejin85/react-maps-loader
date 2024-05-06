@@ -7,5 +7,6 @@
     "../common/lib/**/*.ts",
     "../common/lib/**/*.tsx",
     "../common/lib/**/*.d.ts"
-  ]
+  ],
+  "exclude": ["../naver/**", "vite.config.ts"]
 }

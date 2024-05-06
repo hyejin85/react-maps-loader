@@ -11,17 +11,18 @@
     }
   },
   "scripts": {
-    "compile": "rm -rf lib && tsc",
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "compile": "rm -rf lib && tsc -p packages/google/tsconfig.json && tsc -p packages/naver/tsconfig.json",
+    "build:google": "vite build -c packages/google/vite.config.ts",
+    "build:naver": "vite build -c packages/naver/vite.config.ts",
+    "build": "npm run build:google && npm run build:naver",
     "clean:dist": "rm -rf packages/google/dist && rm -rf packages/naver/dist",
     "make:dist": "mkdir packages/google/dist && mkdir packages/naver/dist",
     "copy:google": "cp -r dist/common packages/google/dist/common && cp -r dist/google packages/google/dist/google",
     "copy:naver": "cp -r dist/common packages/naver/dist/common && cp -r dist/naver packages/naver/dist/naver",
     "copy:dist": "npm run copy:google && npm run copy:naver",
-    "prepare": "npm run compile && npm run build && npm run clean:dist && npm run make:dist && npm run copy:dist",
-    "publish": "npm run prepare && lerna publish"
+    "remove": "rm -rf packages/google/dist/naver && rm -rf packages/naver/dist/google",
+    "prepare": "npm run clean:dist && npm run build && npm run remove",
+    "publish": "lerna publish"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",
