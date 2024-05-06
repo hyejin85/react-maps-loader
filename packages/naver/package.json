@@ -4,9 +4,9 @@
   "description": "React map component wrapping the Naver Maps API",
   "author": "hyejin85 <hyejin.lee0805@gmail.com>",
   "license": "ISC",
-  "main": "dist/common/index.js",
-  "module": "dist/common/index.js",
-  "types": "dist/common/lib/index.d.ts",
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
