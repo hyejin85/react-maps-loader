@@ -142,16 +142,17 @@ const ReactMap: FC<ReactMapProps> = ({ type, apiKey, options, items, selectedIte
   }, [selectedItem]);
 
   return (
-    <LoadScript
-      apiKey={apiKey}
-      isGoogle={isGoogle}
-      initMap={initMap}
-    >
-      <div
-        ref={mapRef}
-        style={{ width: '100%', height: '100%' }}
-      />
-    </LoadScript>
+    // <LoadScript
+    //   apiKey={apiKey}
+    //   isGoogle={isGoogle}
+    //   initMap={initMap}
+    // >
+    //   <div
+    //     ref={mapRef}
+    //     style={{ width: '100%', height: '100%' }}
+    //   />
+    // </LoadScript>
+    <button>지도 컴포넌트</button>
   );
 };
 
