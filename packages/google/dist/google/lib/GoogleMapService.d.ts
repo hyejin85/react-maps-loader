@@ -1,14 +1,9 @@
-import { MapOptions, MapItem } from '../../common/lib';
+import { MapItem } from '../../common/lib';
 
-interface GoogleMapOptions extends MapOptions {
-    scrollwheel?: boolean;
-    clickableIcons?: boolean;
-    gestureHandling?: string;
-}
 declare class GoogleMapService {
     map: google.maps.Map;
     markers: Array<google.maps.Marker>;
-    constructor(element: HTMLElement, controlOption?: GoogleMapOptions);
+    constructor(element: HTMLElement, controlOption?: google.maps.MapOptions);
     initMapEventListener(callback: (item?: MapItem) => void): void;
     makeMarkers(items: Array<MapItem>): void;
     setZoom(zoom: number): void;

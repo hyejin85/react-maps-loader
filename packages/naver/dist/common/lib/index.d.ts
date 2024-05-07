@@ -1,4 +1,4 @@
-interface MapOptions {
+export interface MapOptions {
     zoom?: number;
     zoomControl?: boolean;
     minZoom?: number;
@@ -8,7 +8,7 @@ interface MapOptions {
         y: number;
     };
 }
-interface MapItem {
+export interface MapItem {
     id: number;
     name?: string;
     position: {
@@ -16,5 +16,5 @@ interface MapItem {
         lng: number;
     };
 }
-export type { MapOptions, MapItem };
+export { MapEnum } from './enum';
 export { default } from './ReactMap';

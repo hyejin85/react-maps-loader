@@ -1,12 +1,9 @@
-import { MapOptions, MapItem } from '../../common/lib';
+import { MapItem } from '../../common/lib';
 
-interface NaverMapOptions extends MapOptions {
-    scrollWheel?: boolean;
-}
 declare class NaverMapService {
     map: naver.maps.Map;
     markers: Array<naver.maps.Marker>;
-    constructor(element: HTMLElement, controlOption?: NaverMapOptions);
+    constructor(element: HTMLElement, controlOption?: naver.maps.MapOptions);
     initMapEventListener(callback: (item?: MapItem) => void): void;
     makeMarkers(items: Array<MapItem>): void;
     setZoom(zoom: number): void;
