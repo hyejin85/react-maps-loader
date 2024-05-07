@@ -1,4 +1,4 @@
-import type { MapOptions, MapItem } from '@/common/lib';
+import { type MapItem, MapEnum } from '@/common/lib';
 
 /**
  * 위도/경도 값을 위치 객체로 변환하는 함수
@@ -8,13 +8,6 @@ import type { MapOptions, MapItem } from '@/common/lib';
 const getPosition = (position: { lat: number; lng: number }): naver.maps.LatLng => {
   return new naver.maps.LatLng(position.lat, position.lng);
 };
-
-interface NaverMapOptions extends MapOptions {
-  /**
-   * 스크롤 휠모션 허용 여부
-   */
-  scrollWheel?: boolean;
-}
 
 class NaverMapService {
   /**
@@ -31,34 +24,16 @@ class NaverMapService {
    * @constructor
    * @param element 지도를 올릴 타겟 엘리먼트
    * @param controlOption 컨트롤 옵션
+   * @link https://navermaps.github.io/maps.js.ncp/docs/naver.maps.html#.MapOptions
    */
-  constructor(element: HTMLElement, controlOption?: NaverMapOptions) {
-    const mapOptions: naver.maps.MapOptions = {
-      zoom: controlOption?.zoom || 16,
-      zoomControl: controlOption?.zoomControl || false,
-      zoomControlOptions: {
-        style: naver.maps?.ZoomControlStyle.SMALL,
-        position: naver.maps?.Position.TOP_RIGHT,
-      },
-      // minZoom: controlOption?.minZoom,
-      // maxZoom: controlOption?.maxZoom,
-      scaleControl: false,
-      logoControl: false,
-      mapDataControl: false,
-      mapTypeControl: false,
-      scrollWheel: controlOption?.scrollWheel || false,
+  constructor(element: HTMLElement, controlOption?: naver.maps.MapOptions) {
+    const mapOptions = {
+      ...controlOption,
+      zoom: controlOption?.zoom || MapEnum.ZOOM_SIZE,
     };
 
     this.map = new naver.maps.Map(element, mapOptions);
     this.markers = [];
-
-    let isLoadedOnce = false;
-    naver.maps.Event.addListener(this.map, 'tilesloaded', () => {
-      if (!isLoadedOnce) {
-        isLoadedOnce = true;
-        this.map.panBy({ x: controlOption?.panBy?.x || 0, y: controlOption?.panBy?.y || 0 });
-      }
-    });
   }
 
   /**
@@ -75,8 +50,7 @@ class NaverMapService {
    * 마커 리스트 생성 함수
    * @param items 상품 정보 리스트
    * @param callback 마커 클릭 이벤트 핸들러
-   * @reference naver.maps.Marker
-   * https://navermaps.github.io/maps.js.ncp/docs/naver.maps.Marker.html
+   * @link https://navermaps.github.io/maps.js.ncp/docs/naver.maps.Marker.html
    */
   makeMarkers(items: Array<MapItem>): void {
     // 기존 마커들 삭제

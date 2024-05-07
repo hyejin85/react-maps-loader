@@ -1,4 +1,4 @@
-import type { MapOptions, MapItem } from '@/common/lib';
+import { type MapItem, MapEnum } from '@/common/lib';
 
 /**
  * 위도/경도 값을 위치 객체로 변환하는 함수
@@ -8,22 +8,6 @@ import type { MapOptions, MapItem } from '@/common/lib';
 const getPosition = (position: { lat: number; lng: number }): google.maps.LatLng => {
   return new google.maps.LatLng(position.lat, position.lng);
 };
-
-interface GoogleMapOptions extends MapOptions {
-  /**
-   * 스크롤 휠모션 허용 여부
-   */
-  scrollwheel?: boolean;
-  /**
-   * 지도 내 아이콘 클릭 가능 여부
-   */
-  clickableIcons?: boolean;
-  /**
-   * 화면 터치 핸들링 옵션
-   * @example 'cooperative' | 'auto' | 'greedy' | 'none'
-   */
-  gestureHandling?: string;
-}
 
 class GoogleMapService {
   /**
@@ -40,30 +24,16 @@ class GoogleMapService {
    * @constructor
    * @param element 지도를 올릴 타겟 엘리먼트
    * @param controlOption 컨트롤 옵션
+   * @link https://developers.google.com/maps/documentation/javascript/reference/map?hl=ko#MapOptions
    */
-  constructor(element: HTMLElement, controlOption?: GoogleMapOptions) {
+  constructor(element: HTMLElement, controlOption?: google.maps.MapOptions) {
     const mapOptions: google.maps.MapOptions = {
-      zoom: controlOption?.zoom || 16,
-      zoomControl: controlOption?.zoomControl || false,
-      zoomControlOptions: {
-        position: google.maps.ControlPosition.TOP_RIGHT,
-      },
-      // minZoom: controlOption?.minZoom,
-      // maxZoom: controlOption?.maxZoom,
-      mapTypeControl: false,
-      streetViewControl: false,
-      fullscreenControl: false,
-      clickableIcons: controlOption?.clickableIcons || false,
-      scrollwheel: controlOption?.scrollwheel || false,
-      gestureHandling: controlOption?.gestureHandling || 'auto',
+      ...controlOption,
+      zoom: controlOption?.zoom || MapEnum.ZOOM_SIZE,
     };
 
     this.map = new google.maps.Map(element, mapOptions);
     this.markers = [];
-
-    google.maps.event.addListenerOnce(this.map, 'tilesloaded', () => {
-      this.map.panBy(controlOption?.panBy?.x || 0, controlOption?.panBy?.y || 0);
-    });
   }
 
   /**
@@ -80,7 +50,7 @@ class GoogleMapService {
    * 마커 리스트 생성 함수
    * @param items 상품 정보 리스트
    * @reference google.maps.Marker
-   * https://developers.google.com/maps/documentation/javascript/reference/marker
+   * @link https://developers.google.com/maps/documentation/javascript/reference/marker
    */
   makeMarkers(items: Array<MapItem>): void {
     // 기존 마커들 삭제
