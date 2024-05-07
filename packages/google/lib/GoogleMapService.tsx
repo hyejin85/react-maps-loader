@@ -1,16 +1,4 @@
-interface MapOptions {
-  zoom?: number;
-  zoomControl?: boolean;
-  minZoom?: number;
-  maxZoom?: number;
-  scrollWheel?: boolean;
-  clickableIcons?: boolean; // 구글용 옵션
-  gestureHandling?: string; // 구글용 옵션
-  panBy?: {
-    x: number;
-    y: number;
-  };
-}
+import type { MapOptions, MapItem } from '@/common/lib';
 
 /**
  * 위도/경도 값을 위치 객체로 변환하는 함수
@@ -21,17 +9,31 @@ const getPosition = (position: { lat: number; lng: number }): google.maps.LatLng
   return new google.maps.LatLng(position.lat, position.lng);
 };
 
-/**
- * @class GoogleMapService
- * @member map 구글 지도 객체
- * @member bounds 지도 경계 객체
- * @member markers 생성된 마커 리스트
- */
+interface GoogleMapOptions extends MapOptions {
+  /**
+   * 스크롤 휠모션 허용 여부
+   */
+  scrollwheel?: boolean;
+  /**
+   * 지도 내 아이콘 클릭 가능 여부
+   */
+  clickableIcons?: boolean;
+  /**
+   * 화면 터치 핸들링 옵션
+   * @example 'cooperative' | 'auto' | 'greedy' | 'none'
+   */
+  gestureHandling?: string;
+}
+
 class GoogleMapService {
+  /**
+   * 구글 지도 객체
+   */
   map: google.maps.Map;
 
-  bounds: google.maps.LatLngBounds;
-
+  /**
+   * 생성된 마커 리스트
+   */
   markers: Array<google.maps.Marker>;
 
   /**
@@ -39,7 +41,7 @@ class GoogleMapService {
    * @param element 지도를 올릴 타겟 엘리먼트
    * @param controlOption 컨트롤 옵션
    */
-  constructor(element: HTMLElement, controlOption?: MapOptions) {
+  constructor(element: HTMLElement, controlOption?: GoogleMapOptions) {
     const mapOptions: google.maps.MapOptions = {
       zoom: controlOption?.zoom || 16,
       zoomControl: controlOption?.zoomControl || false,
@@ -51,13 +53,12 @@ class GoogleMapService {
       mapTypeControl: false,
       streetViewControl: false,
       fullscreenControl: false,
-      clickableIcons: false,
-      scrollwheel: controlOption?.scrollWheel || false,
+      clickableIcons: controlOption?.clickableIcons || false,
+      scrollwheel: controlOption?.scrollwheel || false,
       gestureHandling: controlOption?.gestureHandling || 'auto',
     };
 
     this.map = new google.maps.Map(element, mapOptions);
-    this.bounds = new google.maps.LatLngBounds();
     this.markers = [];
 
     google.maps.event.addListenerOnce(this.map, 'tilesloaded', () => {
@@ -69,7 +70,7 @@ class GoogleMapService {
    * 마커 이외의 영역 클릭 시 액티브 마커 해제하도록 설정하는 이벤트 등록 함수
    * @param callback 지도 클릭 이벤트 핸들러
    */
-  initMapEventListener(callback: (item?: any) => void): void {
+  initMapEventListener(callback: (item?: MapItem) => void): void {
     google.maps.event.addListener(this.map, 'click', () => {
       callback();
     });
@@ -81,7 +82,7 @@ class GoogleMapService {
    * @reference google.maps.Marker
    * https://developers.google.com/maps/documentation/javascript/reference/marker
    */
-  makeMarkers(items: Array<any>): void {
+  makeMarkers(items: Array<MapItem>): void {
     // 기존 마커들 삭제
     this.markers.forEach((marker) => marker.setMap(null));
     this.markers = [];
@@ -90,20 +91,11 @@ class GoogleMapService {
       return;
     }
 
-    if (items.length <= 1) {
-      const [item] = items;
-      const position = getPosition(item.position);
-      // 지도 센터 위치를 지정한다
-      this.setCenter(position);
-    } else {
-      // 줌이 경계 객체에 알맞게 조정된다
-      this.setBounds();
-    }
-
+    const bounds = new google.maps.LatLngBounds();
     items.forEach((item) => {
       const position = getPosition(item.position);
       // 마커 위치 정보를 경계 객체에 넘겨준다
-      this.bounds.extend(position);
+      bounds.extend(position);
 
       const marker = new google.maps.Marker({
         position,
@@ -112,6 +104,16 @@ class GoogleMapService {
 
       this.markers.push(marker);
     });
+
+    if (items.length <= 1) {
+      const [item] = items;
+      const position = getPosition(item.position);
+      // 지도 센터 위치를 지정한다
+      this.setCenter(position);
+    } else {
+      // 줌이 경계 객체에 알맞게 조정된다
+      this.setBounds(bounds);
+    }
   }
 
   /**
@@ -148,9 +150,10 @@ class GoogleMapService {
 
   /**
    * 지도 경계 객체 위치 정보 Set 함수
+   * @param bounds 경계 객체
    */
-  setBounds(): void {
-    this.map.fitBounds(this.bounds);
+  setBounds(bounds: google.maps.LatLngBounds): void {
+    this.map.fitBounds(bounds);
   }
 
   /**

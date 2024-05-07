@@ -1,14 +1,4 @@
-interface MapOptions {
-  zoom?: number;
-  zoomControl?: boolean;
-  minZoom?: number;
-  maxZoom?: number;
-  scrollWheel?: boolean;
-  panBy?: {
-    x: number;
-    y: number;
-  };
-}
+import type { MapOptions, MapItem } from '@/common/lib';
 
 /**
  * 위도/경도 값을 위치 객체로 변환하는 함수
@@ -19,14 +9,22 @@ const getPosition = (position: { lat: number; lng: number }): naver.maps.LatLng 
   return new naver.maps.LatLng(position.lat, position.lng);
 };
 
-/**
- * @class NaverMapService
- * @member map 네이버 지도 객체
- * @member markers 생성된 마커 리스트
- */
+interface NaverMapOptions extends MapOptions {
+  /**
+   * 스크롤 휠모션 허용 여부
+   */
+  scrollWheel?: boolean;
+}
+
 class NaverMapService {
+  /**
+   * 네이버 지도 객체
+   */
   map: naver.maps.Map;
 
+  /**
+   * 생성된 마커 리스트
+   */
   markers: Array<naver.maps.Marker>;
 
   /**
@@ -34,7 +32,7 @@ class NaverMapService {
    * @param element 지도를 올릴 타겟 엘리먼트
    * @param controlOption 컨트롤 옵션
    */
-  constructor(element: HTMLElement, controlOption?: MapOptions) {
+  constructor(element: HTMLElement, controlOption?: NaverMapOptions) {
     const mapOptions: naver.maps.MapOptions = {
       zoom: controlOption?.zoom || 16,
       zoomControl: controlOption?.zoomControl || false,
@@ -67,7 +65,7 @@ class NaverMapService {
    * 마커 이외의 영역 클릭 시 액티브 마커 해제하도록 설정하는 이벤트 등록 함수
    * @param callback 지도 클릭 이벤트 핸들러
    */
-  initMapEventListener(callback: (item?: any) => void): void {
+  initMapEventListener(callback: (item?: MapItem) => void): void {
     naver.maps.Event.addListener(this.map, 'click', () => {
       callback();
     });
@@ -80,23 +78,13 @@ class NaverMapService {
    * @reference naver.maps.Marker
    * https://navermaps.github.io/maps.js.ncp/docs/naver.maps.Marker.html
    */
-  makeMarkers(items: Array<any>): void {
+  makeMarkers(items: Array<MapItem>): void {
     // 기존 마커들 삭제
     this.markers.forEach((marker) => marker.setMap(null));
     this.markers = [];
 
     if (items.length === 0) {
       return;
-    }
-
-    if (items.length <= 1) {
-      const [item] = items;
-      const position = getPosition(item.position);
-      // 지도 센터 위치를 지정한다
-      this.setCenter(position);
-    } else {
-      // 줌이 경계 객체에 알맞게 조정된다
-      this.setBounds(items);
     }
 
     items.forEach((item) => {
@@ -108,6 +96,17 @@ class NaverMapService {
 
       this.markers.push(marker);
     });
+
+    if (items.length <= 1) {
+      const [item] = items;
+      const position = getPosition(item.position);
+      // 지도 센터 위치를 지정한다
+      this.setCenter(position);
+    } else {
+      const positions = items.map((item) => getPosition(item.position));
+      // 줌이 경계 객체에 알맞게 조정된다
+      this.setBounds(positions);
+    }
   }
 
   /**
@@ -144,10 +143,9 @@ class NaverMapService {
 
   /**
    * 지도 경계 객체 위치 정보 Set 함수
-   * @param items 상품 정보 리스트
+   * @param positions 위치 정보 리스트
    */
-  setBounds(items: Array<any>): void {
-    const positions = items.map((item) => getPosition(item.position));
+  setBounds(positions: Array<naver.maps.LatLng>): void {
     this.map.fitBounds(positions);
   }
 

@@ -2,49 +2,36 @@ import { isEqual } from 'lodash-es';
 import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import GoogleMap from '@/google/lib';
 import NaverMap from '@/naver/lib';
-// import { MapItem, MapOptions } from './index.d';
 import LoadScript from './LoadScript';
-
-interface MapOptions {
-  zoom?: number;
-  zoomControl?: boolean;
-  minZoom?: number;
-  maxZoom?: number;
-  scrollWheel?: boolean;
-  clickableIcons?: boolean; // 구글용 옵션
-  gestureHandling?: string; // 구글용 옵션
-  panBy?: {
-    x: number;
-    y: number;
-  };
-}
-
-interface MapItem {
-  id: number;
-  name?: string;
-  position: {
-    lat: number;
-    lng: number;
-  };
-}
+import { MapItem, MapOptions } from './index';
 
 interface ReactMapProps {
+  /**
+   * 구글/네이버 지도 타입
+   */
   type: 'google' | 'naver';
+  /**
+   * 지도 API Key
+   */
   apiKey: string;
+  /**
+   * 지도 컨트롤 옵션 값
+   */
   options?: MapOptions;
+  /**
+   * 마커로 생성할 위치 정보 리스트
+   */
   items: Array<MapItem>;
+  /**
+   * 액티브 상태로 표시할 마커 위치 정보
+   */
   selectedItem?: MapItem;
+  /**
+   * 마커 클릭 이벤트 리스너
+   */
   onClickMarker?: (item?: MapItem) => void;
 }
 
-/**
- * @prop {string} type - 구글/네이버 지도 타입
- * @prop {string} apiKey - 지도 API Key
- * @prop {ControlOption} options - 지도 컨트롤 옵션 값
- * @prop {Array<MapItem>} items - 마커로 생성할 위치 정보 리스트
- * @prop {MapItem} selectedItem - 액티브 상태로 표시할 마커 위치 정보
- * @prop {(item: MapItem) => void} onClickMarker - 마커 클릭 이벤트 리스너
- */
 const ReactMap: FC<ReactMapProps> = ({ type, apiKey, options, items, selectedItem, onClickMarker }) => {
   /**
    * 지도 객체가 올라가는 Element
@@ -129,9 +116,7 @@ const ReactMap: FC<ReactMapProps> = ({ type, apiKey, options, items, selectedIte
   }, [items]);
 
   /**
-   * 지도의 밖에서 이벤트가 발생했을때 해당 아이템을 할당했을 때 실행된다.
-   * (예를 들어 LP 필터 리스트 항목에서 아이템을 클릭했을 경우)
-   * 현재 액티브 마커로 등록한다.
+   * 지도의 밖에서 액티브 상태의 등록할 마커가 할당됐을 때 실행된다.
    */
   useEffect(() => {
     if (selectedItem === activeMarker) {

@@ -1,26 +1,6 @@
 import { FC } from 'react';
+import { MapItem, MapOptions } from './index';
 
-interface MapOptions {
-    zoom?: number;
-    zoomControl?: boolean;
-    minZoom?: number;
-    maxZoom?: number;
-    scrollWheel?: boolean;
-    clickableIcons?: boolean;
-    gestureHandling?: string;
-    panBy?: {
-        x: number;
-        y: number;
-    };
-}
-interface MapItem {
-    id: number;
-    name?: string;
-    position: {
-        lat: number;
-        lng: number;
-    };
-}
 interface ReactMapProps {
     type: 'google' | 'naver';
     apiKey: string;
