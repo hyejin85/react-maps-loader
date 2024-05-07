@@ -41,13 +41,13 @@ class GoogleMapService {
    */
   constructor(element: HTMLElement, controlOption?: MapOptions) {
     const mapOptions: google.maps.MapOptions = {
-      zoom: controlOption?.zoom,
+      zoom: controlOption?.zoom || 16,
       zoomControl: controlOption?.zoomControl || false,
       zoomControlOptions: {
         position: google.maps.ControlPosition.TOP_RIGHT,
       },
-      minZoom: controlOption?.minZoom,
-      maxZoom: controlOption?.maxZoom,
+      // minZoom: controlOption?.minZoom,
+      // maxZoom: controlOption?.maxZoom,
       mapTypeControl: false,
       streetViewControl: false,
       fullscreenControl: false,

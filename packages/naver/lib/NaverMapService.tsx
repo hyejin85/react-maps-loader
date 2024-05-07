@@ -36,14 +36,14 @@ class NaverMapService {
    */
   constructor(element: HTMLElement, controlOption?: MapOptions) {
     const mapOptions: naver.maps.MapOptions = {
-      zoom: controlOption?.zoom,
+      zoom: controlOption?.zoom || 16,
       zoomControl: controlOption?.zoomControl || false,
       zoomControlOptions: {
         style: naver.maps?.ZoomControlStyle.SMALL,
         position: naver.maps?.Position.TOP_RIGHT,
       },
-      minZoom: controlOption?.minZoom,
-      maxZoom: controlOption?.maxZoom,
+      // minZoom: controlOption?.minZoom,
+      // maxZoom: controlOption?.maxZoom,
       scaleControl: false,
       logoControl: false,
       mapDataControl: false,
