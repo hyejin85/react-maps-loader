@@ -3,5 +3,5 @@
     "source.fixAll": "explicit"
   },
   "editor.formatOnSave": true,
-  "cSpell.words": ["naver", "navermaps", "tilesloaded", "ZINDEX"]
+  "cSpell.words": ["naver", "navermaps", "tilesloaded", "scrollwheel", "ZINDEX"]
 }
