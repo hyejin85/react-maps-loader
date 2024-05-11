@@ -6,7 +6,7 @@
 
 구글 및 네이버 Maps API를 래핑하여 각각 NPM 리액트 컴포넌트로 제공하는 모노 레파지토리의 루트입니다.
 
-상세 모듈 설명과 사용법은 [react-maps-loader-google](https://github.com/hyejin85/react-maps-loader/tree/main/packages/google) 및 [react-maps-loader-naver](https://github.com/hyejin85/react-maps-loader/tree/main/packages/naver) 각각을 참고해주시길 바랍니다.
+상세 모듈 설명과 사용법은 [react-maps-loader-google](https://github.com/hyejin85/react-maps-loader/tree/main/packages/google) 및 [react-maps-loader-naver](https://github.com/hyejin85/react-maps-loader/tree/main/packages/naver) 각 패키지를 참고해주시길 바랍니다.
 
 ## Getting Started
 
