@@ -1,12 +1,12 @@
 <div align="center">
 
-# react-maps-loader organization root
+# React Maps Loader organization root
 
 </div>
 
-구글 및 네이버 Maps API를 래핑하여 각각 NPM 리액트 컴포넌트로 제공하는 모노 레파지토리의 루트입니다.
+구글 및 네이버 Maps API를 래핑하여 각각 NPM 리액트 컴포넌트로 제공하는 모노 레파지토리의 루트 디렉토리 입니다.
 
-상세 모듈 설명과 사용법은 [react-maps-loader-google](https://github.com/hyejin85/react-maps-loader/tree/main/packages/google) 및 [react-maps-loader-naver](https://github.com/hyejin85/react-maps-loader/tree/main/packages/naver) 각 패키지를 참고해주시길 바랍니다.
+상세 모듈 설치법과 사용법은 [react-maps-loader-google](https://github.com/hyejin85/react-maps-loader/tree/main/packages/google) 및 [react-maps-loader-naver](https://github.com/hyejin85/react-maps-loader/tree/main/packages/naver) 각 패키지 설명문을 참고해주시길 바랍니다.
 
 ## Getting Started
 
@@ -16,18 +16,28 @@
 
 ### 패키지 빌드 & 배포
 
+install packages:
+
 ```bash
-# install packages
-$ npm install
+npm install
+```
 
-# build repositories with vite
-$ npm run build
+build repositories (with vite):
 
-# clean up and build
-$ npm run prepare
+```bash
+npm run build
+```
 
-# publish repositories with lerna
-$ lerna publish
+clean up and build:
+
+```bash
+npm run prepare
+```
+
+publish repositories (with lerna):
+
+```bash
+lerna publish
 ```
 
 ## 작업 리스트 정리
@@ -50,9 +60,9 @@ $ lerna publish
     - [x] 리액트 컴포넌트 컨트롤 옵션 prop 제공
   - [x] 마커 생성 기능 개발
     - [x] 구글/네이버 지도 마커 생성 구현
-    - [ ] 구글/네이버 지도 마커 이벤트 리스너 제공
+    - [ ] 구글/네이버 지도 마커 이벤트 리스너 등록
     - [ ] 구글/네이버 지도 커스텀 마커 생성 구현
-    - [ ] 구글/네이버 지도 커스텀 마커 이벤트 리스너 제공
+    - [ ] 구글/네이버 지도 커스텀 마커 이벤트 리스너 등록
     - [x] 리액트 컴포넌트 마커 위치 정보 prop 제공
     - [ ] 리액트 컴포넌트 마커 이벤트 리스너 prop 제공
   - [ ] 윈도우 창 생성 기능 개발
@@ -60,6 +70,6 @@ $ lerna publish
     - [ ] 리액트 컴포넌트 윈도우 창 prop 제공
     - [ ] 리액트 컴포넌트 윈도우 창 이벤트 리스너 prop 제공
   - [ ] 지도 이벤트 리스너 개발
-    - [ ] 구글/네이버 지도 이벤트 리스너 제공
+    - [x] 구글/네이버 지도 이벤트 리스너 등록
     - [ ] 리액트 컴포넌트 지도 이벤트 리스너 prop 제공
 - [x] README.md 작성
