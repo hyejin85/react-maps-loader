@@ -1,11 +1,9 @@
-# `common`
+<div align="center">
 
-> TODO: description
+# React Maps Loader Common
 
-## Usage
+</div>
 
-```
-const common = require('common');
+The common react component for Google and Naver map component.
 
-// TODO: DEMONSTRATE API
-```
+It handles the business logic of Google and Naver service, including built-in functions.
