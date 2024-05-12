@@ -2,14 +2,22 @@
   "name": "react-maps-loader-google",
   "version": "0.0.15",
   "description": "React map component wrapping the Google Maps API",
-  "author": "hyejin85 <hyejin.lee0805@gmail.com>",
-  "license": "ISC",
+  "author": {
+    "name": "Hyejin Lee",
+    "email": "hyejin.lee0805@gmail.com",
+    "url": "https://github.com/hyejin85"
+  },
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hyejin85/react-maps-loader/tree/main/packages/google"
+  },
+  "homepage": "https://github.com/hyejin85/react-maps-loader/blob/main/packages/google/README.md",
   "dependencies": {
     "@types/google.maps": "^3.55.3"
   },

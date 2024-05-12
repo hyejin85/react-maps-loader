@@ -2,14 +2,22 @@
   "name": "react-maps-loader-naver",
   "version": "0.0.15",
   "description": "React map component wrapping the Naver Maps API",
-  "author": "hyejin85 <hyejin.lee0805@gmail.com>",
-  "license": "ISC",
+  "author": {
+    "name": "Hyejin Lee",
+    "email": "hyejin.lee0805@gmail.com",
+    "url": "https://github.com/hyejin85"
+  },
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hyejin85/react-maps-loader/tree/main/packages/naver"
+  },
+  "homepage": "https://github.com/hyejin85/react-maps-loader/blob/main/packages/naver/README.md",
   "dependencies": {
     "@types/navermaps": "^3.7.4"
   },
