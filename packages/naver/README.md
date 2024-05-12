@@ -2,8 +2,6 @@
 
 # React Maps Loader Naver
 
-[![npm version](https://badge.fury.io/js/react-maps-loader-naver.svg)](http://badge.fury.io/js/react-maps-loader-naver)
-
 </div>
 
 `react-maps-loader-naver` is a component written over a small set of the Naver Maps API. It allows you to render any React component on the Naver Map.
@@ -29,7 +27,6 @@ import NaverMap from 'react-maps-loader-naver';
 
 <div style={{ height: '100vh', width: '100%' }}>
   <NaverMap
-    type="naver"
     apiKey=/* YOUR KEY HERE */
     options={{
       zoomControl: true,

@@ -2,8 +2,6 @@
 
 # React Maps Loader Google
 
-[![npm version](https://badge.fury.io/js/react-maps-loader-google.svg)](http://badge.fury.io/js/react-maps-loader-google)
-
 </div>
 
 `react-maps-loader-google` is a component written over a small set of the Google Maps API. It allows you to render any React component on the Google Map.
@@ -29,7 +27,6 @@ import GoogleMap from 'react-maps-loader-google';
 
 <div style={{ height: '100vh', width: '100%' }}>
   <GoogleMap
-    type="google"
     apiKey=/* YOUR KEY HERE */
     options={{
       zoomControl: true,
