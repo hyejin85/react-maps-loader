@@ -1,15 +1,15 @@
 import { isEqual } from 'lodash-es';
-import { FC, useCallback, useEffect, useRef, useState } from 'react';
-import GoogleMap from '@/google/lib';
-import NaverMap from '@/naver/lib';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { GoogleService, type GoogleOptions } from '@/google/lib';
+import { NaverService, type NaverOptions } from '@/naver/lib';
+import { MapType, MapItem, MapOptions, isGoogleMap } from './index';
 import LoadScript from './LoadScript';
-import { MapItem, MapOptions } from './index';
 
-interface ReactMapProps {
+export interface ReactMapProps<T extends MapType> {
   /**
    * 구글/네이버 지도 타입
    */
-  type: 'google' | 'naver';
+  type: T;
   /**
    * 지도 API Key
    */
@@ -17,7 +17,7 @@ interface ReactMapProps {
   /**
    * 지도 컨트롤 옵션 값
    */
-  options?: MapOptions;
+  options?: MapOptions<T>;
   /**
    * 마커로 생성할 위치 정보 리스트
    */
@@ -29,10 +29,17 @@ interface ReactMapProps {
   /**
    * 마커 클릭 이벤트 리스너
    */
-  onClickMarker?: (item?: MapItem) => void;
+  // onClickMarker?: (item: MapItem) => void;
 }
 
-const ReactMap: FC<ReactMapProps> = ({ type, apiKey, options, items, selectedItem, onClickMarker }) => {
+const ReactMap = <T extends MapType>({
+  type,
+  apiKey,
+  options,
+  items,
+  selectedItem,
+  // onClickMarker,
+}: ReactMapProps<T>) => {
   /**
    * 지도 객체가 올라가는 Element
    */
@@ -41,12 +48,12 @@ const ReactMap: FC<ReactMapProps> = ({ type, apiKey, options, items, selectedIte
   /**
    * 구글/네이버 지도 타입
    */
-  const isGoogle = type === 'google';
+  const isGoogle = isGoogleMap(type);
 
   /**
    * 지도 객체
    */
-  const [mapInstance, setMapInstance] = useState<NaverMap | GoogleMap>();
+  const [mapInstance, setMapInstance] = useState<NaverService | GoogleService>();
 
   /**
    * 마커로 표시 할 상품 리스트
@@ -63,16 +70,15 @@ const ReactMap: FC<ReactMapProps> = ({ type, apiKey, options, items, selectedIte
    */
   const initMap = useCallback(() => {
     const mapElement = mapRef.current;
-
     if (!mapElement) {
       return;
     }
 
-    let map: GoogleMap | NaverMap;
+    let map;
     if (isGoogle) {
-      map = new GoogleMap(mapElement, options);
+      map = new GoogleService(mapElement, options as GoogleOptions);
     } else {
-      map = new NaverMap(mapElement, options);
+      map = new NaverService(mapElement, options as NaverOptions);
     }
 
     setMapInstance(map);
@@ -80,14 +86,9 @@ const ReactMap: FC<ReactMapProps> = ({ type, apiKey, options, items, selectedIte
 
   /**
    * 지도 마커 이외의 영역 클릭 이벤트 핸들러
-   * @param item 액티브 마커 상태의 상품 정보
    */
-  const mapClickHandler = (item?: MapItem) => {
-    setActiveMarker(item);
-
-    if (onClickMarker) {
-      onClickMarker(item);
-    }
+  const mapClickHandler = () => {
+    setActiveMarker(undefined);
   };
 
   /**
