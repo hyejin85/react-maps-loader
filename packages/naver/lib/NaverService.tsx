@@ -1,5 +1,7 @@
 import { type MapItem, MapEnum } from '@/common/lib';
 
+export type NaverOptions = naver.maps.MapOptions;
+
 /**
  * 위도/경도 값을 위치 객체로 변환하는 함수
  * @param position 위도/경도 값
@@ -9,7 +11,7 @@ const getPosition = (position: { lat: number; lng: number }): naver.maps.LatLng 
   return new naver.maps.LatLng(position.lat, position.lng);
 };
 
-class NaverMapService {
+class NaverService {
   /**
    * 네이버 지도 객체
    */
@@ -26,7 +28,7 @@ class NaverMapService {
    * @param controlOption 컨트롤 옵션
    * @link https://navermaps.github.io/maps.js.ncp/docs/naver.maps.html#.MapOptions
    */
-  constructor(element: HTMLElement, controlOption?: naver.maps.MapOptions) {
+  constructor(element: HTMLElement, controlOption?: NaverOptions) {
     const mapOptions = {
       ...controlOption,
       zoom: controlOption?.zoom || MapEnum.ZOOM_SIZE,
@@ -40,7 +42,7 @@ class NaverMapService {
    * 마커 이외의 영역 클릭 시 액티브 마커 해제하도록 설정하는 이벤트 등록 함수
    * @param callback 지도 클릭 이벤트 핸들러
    */
-  initMapEventListener(callback: (item?: MapItem) => void): void {
+  initMapEventListener(callback: () => void): void {
     naver.maps.Event.addListener(this.map, 'click', () => {
       callback();
     });
@@ -132,4 +134,4 @@ class NaverMapService {
   }
 }
 
-export default NaverMapService;
+export default NaverService;
