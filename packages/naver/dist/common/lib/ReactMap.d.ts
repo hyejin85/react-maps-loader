@@ -1,13 +1,11 @@
-import { FC } from 'react';
-import { MapItem, MapOptions } from './index';
+import { MapType, MapItem, MapOptions } from './index';
 
-interface ReactMapProps {
-    type: 'google' | 'naver';
+export interface ReactMapProps<T extends MapType> {
+    type: T;
     apiKey: string;
-    options?: MapOptions;
+    options?: MapOptions<T>;
     items: Array<MapItem>;
     selectedItem?: MapItem;
-    onClickMarker?: (item?: MapItem) => void;
 }
-declare const ReactMap: FC<ReactMapProps>;
+declare const ReactMap: <T extends MapType>({ type, apiKey, options, items, selectedItem, }: ReactMapProps<T>) => import("react").JSX.Element;
 export default ReactMap;

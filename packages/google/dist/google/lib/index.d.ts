@@ -1,1 +1,1 @@
-export { default } from './GoogleMapService';
+export { default } from './GoogleMap';

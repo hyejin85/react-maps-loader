@@ -1,10 +1,11 @@
 import { MapItem } from '../../common/lib';
 
-declare class NaverMapService {
+export type NaverOptions = naver.maps.MapOptions;
+declare class NaverService {
     map: naver.maps.Map;
     markers: Array<naver.maps.Marker>;
-    constructor(element: HTMLElement, controlOption?: naver.maps.MapOptions);
-    initMapEventListener(callback: (item?: MapItem) => void): void;
+    constructor(element: HTMLElement, controlOption?: NaverOptions);
+    initMapEventListener(callback: () => void): void;
     makeMarkers(items: Array<MapItem>): void;
     setZoom(zoom: number): void;
     getZoom(): number;
@@ -13,4 +14,4 @@ declare class NaverMapService {
     setBounds(positions: Array<naver.maps.LatLng>): void;
     getBounds(): naver.maps.Bounds;
 }
-export default NaverMapService;
+export default NaverService;

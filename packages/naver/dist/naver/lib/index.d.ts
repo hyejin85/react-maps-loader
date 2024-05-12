@@ -1,1 +1,1 @@
-export { default } from './NaverMapService';
+export { default } from './NaverMap';

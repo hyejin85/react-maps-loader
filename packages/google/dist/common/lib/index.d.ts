@@ -1,13 +1,9 @@
-export interface MapOptions {
-    zoom?: number;
-    zoomControl?: boolean;
-    minZoom?: number;
-    maxZoom?: number;
-    panBy?: {
-        x: number;
-        y: number;
-    };
-}
+import { GoogleOptions } from '../../google/lib/GoogleService';
+import { NaverOptions } from '../../naver/lib/NaverService';
+
+export type MapType = 'google' | 'naver';
+export type MapOptions<T> = T extends 'google' ? GoogleOptions : NaverOptions;
+export declare const isGoogleMap: (type: MapType) => boolean;
 export interface MapItem {
     id: number;
     name?: string;
