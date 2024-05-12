@@ -26,7 +26,7 @@ export default defineConfig({
     // minify: 'terser',
     outDir: resolve(__dirname, 'dist'),
     lib: {
-      entry: 'packages/common/lib/index.ts',
+      entry: 'packages/google/lib/index.ts',
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled into your library

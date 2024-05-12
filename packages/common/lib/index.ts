@@ -1,5 +1,5 @@
-import { type GoogleOptions } from '@/google/lib';
-import { type NaverOptions } from '@/naver/lib';
+import { type GoogleOptions } from '@/google/lib/GoogleService';
+import { type NaverOptions } from '@/naver/lib/NaverService';
 
 export type MapType = 'google' | 'naver';
 
