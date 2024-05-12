@@ -1,5 +1,7 @@
 import { type MapItem, MapEnum } from '@/common/lib';
 
+export type GoogleOptions = google.maps.MapOptions;
+
 /**
  * 위도/경도 값을 위치 객체로 변환하는 함수
  * @param position 위도/경도 값 객체
@@ -9,7 +11,7 @@ const getPosition = (position: { lat: number; lng: number }): google.maps.LatLng
   return new google.maps.LatLng(position.lat, position.lng);
 };
 
-class GoogleMapService {
+class GoogleService {
   /**
    * 구글 지도 객체
    */
@@ -26,8 +28,8 @@ class GoogleMapService {
    * @param controlOption 컨트롤 옵션
    * @link https://developers.google.com/maps/documentation/javascript/reference/map?hl=ko#MapOptions
    */
-  constructor(element: HTMLElement, controlOption?: google.maps.MapOptions) {
-    const mapOptions: google.maps.MapOptions = {
+  constructor(element: HTMLElement, controlOption?: GoogleOptions) {
+    const mapOptions = {
       ...controlOption,
       zoom: controlOption?.zoom || MapEnum.ZOOM_SIZE,
     };
@@ -40,7 +42,7 @@ class GoogleMapService {
    * 마커 이외의 영역 클릭 시 액티브 마커 해제하도록 설정하는 이벤트 등록 함수
    * @param callback 지도 클릭 이벤트 핸들러
    */
-  initMapEventListener(callback: (item?: MapItem) => void): void {
+  initMapEventListener(callback: () => void): void {
     google.maps.event.addListener(this.map, 'click', () => {
       callback();
     });
@@ -135,4 +137,4 @@ class GoogleMapService {
   }
 }
 
-export default GoogleMapService;
+export default GoogleService;
