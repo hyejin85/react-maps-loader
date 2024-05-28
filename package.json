@@ -5,11 +5,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "command": {
-    "publish": {
-      "conventionalCommits": true
-    }
-  },
   "scripts": {
     "compile": "rm -rf lib && tsc",
     "remove:dist": "rm -rf packages/google/dist && rm -rf packages/naver/dist",
