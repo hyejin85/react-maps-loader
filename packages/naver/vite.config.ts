@@ -22,8 +22,6 @@ export default defineConfig({
     ],
   },
   build: {
-    // sourcemap: true,
-    // minify: 'terser',
     outDir: resolve(__dirname, 'dist'),
     lib: {
       entry: 'packages/naver/lib/index.ts',
@@ -31,11 +29,15 @@ export default defineConfig({
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled into your library
       external: ['react', 'react/jsx-runtime'],
-      // treeshake: 'smallest',
+      treeshake: 'smallest',
       output: [
         {
           format: 'es',
           entryFileNames: '[name].mjs',
+        },
+        {
+          format: 'cjs',
+          entryFileNames: '[name].cjs',
         },
       ],
     },
