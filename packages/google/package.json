@@ -1,6 +1,6 @@
 {
   "name": "react-maps-loader-google",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React map component wrapping the Google Maps API",
   "author": {
     "name": "Hyejin Lee",
